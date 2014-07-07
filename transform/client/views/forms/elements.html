@@ -1,0 +1,167 @@
+
+<section class="page-form-ele page">
+
+    <!-- Select Filters -->
+    <section class="panel panel-default page-form-ele">
+        <div class="panel-heading">
+          <h3 class="panel-title">Select Filters</h3>
+        </div>
+        <div class="panel-body" data-ng-controller="DatepickerDemoCtrl">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group ui-datepicker">
+                        <input type="text" 
+                            class="form-control"
+                            datepicker-popup="{{format}}"
+                            ng-model="dt"
+                            is-open="opened"
+                            min="minDate"
+                            max="'2015-06-22'"
+                            datepicker-options="dateOptions" 
+                            date-disabled="disabled(date, mode)"
+                            ng-required="true" 
+                            close-text="Close">
+                        <span class="input-group-addon" ng-click="open($event)"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    School:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>Central Carolina CC</option>
+                            <option>Bladen CC</option>
+                            <option>Durham Technical CC</option>
+                        </select>
+                    </span>
+                  </div>
+                  <div class="col-md-3">
+                    Department:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>Biology</option>
+                            <option>Chemistry</option>
+                            <option>Math</option>
+                            <option>Spanish</option>
+                            <option>Writing</option>
+                        </select>
+                    </span>
+                  </div>
+                  <div class="col-md-3">
+                    Course:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>MAT 101</option>
+                            <option>MAT 121</option>
+                            <option>MAT 161</option>
+                            <option>MAT 201</option>
+                        </select>
+                    </span>
+                  </div>
+                  <div class="col-md-3">
+                    Student:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>Student 1</option>
+                            <option>Student 2</option>
+                            <option>Student 3</option>
+                            <option>Student 4</option>
+                        </select>
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">  
+                    <button type="button" class="btn btn-default">Apply</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Select Filters -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Subject Information</h2>
+        <p>Explore the breakdown of student online usage by subject and course. Click on the subject in the Subject Use graph to view a more detailed breakdown of usage by course.</p>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Subject Use</h3>
+                </div>
+                <div class="page" data-ng-controller="flotChartCtrl">
+                <div class="panel-body">
+                    <div data-flot-chart
+                         data-data="donutChart.data"
+                         data-options="donutChart.options"
+                         style="width: 100%; height: 300px;"
+                         ></div>
+                </div>
+            </div>            
+        </div>
+      </div>
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Subject Breakdown</h3>
+                </div>
+                <div class="page page-charts" data-ng-controller="morrisChartCtrl">
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="bar2.data"
+                         data-type="bar2.type"
+                         data-options="bar2.options"
+                         style="width: 100%; height: 300px;"
+                         ></div>
+                </div>
+            </section>            
+        </div>
+      </div>
+    </div>
+
+    <!-- Radio buttons and checkbox -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Radio Buttons and Checkbox</strong></div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Radio buttons</dt>
+                <dd>
+                    <label class="ui-radio"><input name="radio1" type="radio" value="option1" ><span>Option 1</span></label>
+                    <label class="ui-radio"><input name="radio1" type="radio" value="option2" checked><span>Option 2</span></label>
+                    <label class="ui-radio"><input name="radio1" type="radio" value="option3"><span>Option 3</span></label>
+                </dd>
+                <dt>Disabled radio buttons</dt>
+                <dd>
+                    <label class="ui-radio"><input name="radio2" type="radio" value="option3" disabled><span>Radio disabled</span></label>
+                    <label class="ui-radio"><input name="radio2" type="radio" value="option4" checked disabled><span>Radio checked disabled</span></label>
+                </dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>Checkbox</dt>
+                <dd>
+                    <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" ><span>Option 1</span></label>
+                    <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option2" checked><span>Option 2</span></label>
+                    <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option3"><span>Option 3</span></label>
+                </dd>
+                <dt>Disabled checkbox</dt>
+                <dd>
+                    <label class="ui-checkbox"><input name="checkbox2" type="checkbox" value="option3" disabled><span>Radio disabled</span></label>
+                    <label class="ui-checkbox"><input name="checkbox2" type="checkbox" value="option4" checked disabled><span>Radio checked disabled</span></label>
+                </dd>
+            </dl>
+
+        </div>
+    </section>
+    <!-- end Radio buttons and checkbox -->
+
+</section>

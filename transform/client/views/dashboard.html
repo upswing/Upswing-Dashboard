@@ -1,0 +1,265 @@
+<div class="page page-dashboard" data-ng-controller="DashboardCtrl">
+
+    <!-- Select Filters -->
+    <section class="panel panel-default page-form-ele">
+        <div class="panel-heading">
+          <h3 class="panel-title">Select Filters</h3>
+        </div>
+        <div class="panel-body" data-ng-controller="DatepickerDemoCtrl">
+            <div class="row">
+                <div class="col-md-3">
+                    Start Date:
+                    <div class="input-group ui-datepicker">
+                        <input type="text" 
+                            class="form-control"
+                            datepicker-popup="{{format}}"
+                            ng-model="dt"
+                            is-open="opened"
+                            min="minDate"
+                            max="'2015-06-22'"
+                            datepicker-options="dateOptions" 
+                            date-disabled="disabled(date, mode)"
+                            ng-required="true" 
+                            close-text="Close">
+                        <span class="input-group-addon" ng-click="open($event)"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    End Date:
+                    <div class="input-group ui-datepicker">
+                        <input type="text" 
+                            class="form-control"
+                            datepicker-popup="{{format}}"
+                            ng-model="dt"
+                            is-open="opened"
+                            min="minDate"
+                            max="'2015-06-22'"
+                            datepicker-options="dateOptions" 
+                            date-disabled="disabled(date, mode)"
+                            ng-required="true" 
+                            close-text="Close">
+                        <span class="input-group-addon" ng-click="open($event)"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    School:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>Central Carolina CC</option>
+                            <option>Bladen CC</option>
+                            <option>Durham Technical CC</option>
+                        </select>
+                    </span>
+                  </div>
+                  <div class="col-md-3">
+                    Department:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>Biology</option>
+                            <option>Chemistry</option>
+                            <option>Math</option>
+                            <option>Spanish</option>
+                            <option>Writing</option>
+                        </select>
+                    </span>
+                  </div>
+                  <div class="col-md-3">
+                    Course:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>MAT 101</option>
+                            <option>MAT 121</option>
+                            <option>MAT 161</option>
+                            <option>MAT 201</option>
+                        </select>
+                    </span>
+                  </div>
+                  <div class="col-md-3">
+                    Student:
+                    <span class="ui-select">
+                        <select>
+                            <option>All</option>
+                            <option>Student 1</option>
+                            <option>Student 2</option>
+                            <option>Student 3</option>
+                            <option>Student 4</option>
+                        </select>
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">  
+                    <button type="button" class="btn btn-default">Apply</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Select Filters -->
+
+    <!-- View All Sessions -->
+    <section class="page-form-ele page">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>All Session Data</h2>
+            <p>View trends in student usage.</p>
+          </div>
+        </div>
+    </section>
+
+    <div class="panel-body" data-ng-controller="flotChartCtrl">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Total Student Use</h3>
+            </div>
+            <div class="panel-body">
+                <div data-flot-chart
+                     data-data="line1.data"
+                     data-options="line1.options"
+                     style="width: 100%; height: 300px;"
+                     ></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <section class="page-form-ele page">
+      <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">All Sessions</h3>
+            </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Student</th>
+                    <th>Subject</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>07/04/2014</td>
+                    <td>Student 1</td>
+                    <td>MAT 161</td>
+                    <td>30 Min</td>
+                    <td><span class="label label-warning">Scheduled</span></td>
+                </tr>
+                <tr>
+                    <td>07/03/2014</td>
+                    <td>Student 2</td>
+                    <td>MAT 101</td>
+                    <td>15 Min</td>
+                    <td><span class="label label-warning">Scheduled</span></td>
+                </tr>
+                <tr>
+                    <td>06/29/2014</td>
+                    <td>Student 3</td>
+                    <td>ENG 101</td>
+                    <td>30 Min</td>
+                    <td><span class="label label-primary">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>06/28/2014</td>
+                    <td>Student 4</td>
+                    <td>MAT 161</td>
+                    <td>1 Hr</td>
+                    <td><span class="label label-danger">Cancelled</span></td>
+                </tr>
+                <tr>
+                    <td>06/25/2014</td>
+                    <td>Student 3</td>
+                    <td>ENG 101</td>
+                    <td>45 Min</td>
+                    <td><span class="label label-primary">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>06/25/2014</td>
+                    <td>Student 1</td>
+                    <td>MAT 161</td>
+                    <td>1 Hr 30 Min</td>
+                    <td><span class="label label-primary">Completed</span></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- End View All Sessions -->
+
+    <!-- Auditable Hours -->
+    <section class="page-form-ele page">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Auditable Data</h2>
+            <p>View sessions that were completed in academic courses that are eligible for the FTE audit process.</p>
+          </div>
+        </div>
+    </section>
+
+    <div class="panel-body" data-ng-controller="flotChartCtrl">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Auditable Hours</h3>
+            </div>
+            <div class="panel-body">
+                <div data-flot-chart
+                     data-data="line1.data"
+                     data-options="line1.options"
+                     style="width: 100%; height: 300px;"
+                     ></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <section class="page-form-ele page">
+      <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Auditable Sessions</h3>
+            </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Student</th>
+                    <th>Subject</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>06/29/2014</td>
+                    <td>Student 3</td>
+                    <td>ENG 101</td>
+                    <td>30 Min</td>
+                    <td><span class="label label-primary">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>06/25/2014</td>
+                    <td>Student 3</td>
+                    <td>ENG 101</td>
+                    <td>45 Min</td>
+                    <td><span class="label label-primary">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>06/25/2014</td>
+                    <td>Student 1</td>
+                    <td>MAT 161</td>
+                    <td>1 Hr 30 Min</td>
+                    <td><span class="label label-primary">Completed</span></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- End Auditable Hours -->
+
+</div>
+  
