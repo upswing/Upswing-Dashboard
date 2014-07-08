@@ -9,6 +9,24 @@
         <div class="panel-body" data-ng-controller="DatepickerDemoCtrl">
             <div class="row">
                 <div class="col-md-3">
+                    Start Date:
+                    <div class="input-group ui-datepicker">
+                        <input type="text" 
+                            class="form-control"
+                            datepicker-popup="{{format}}"
+                            ng-model="dt"
+                            is-open="opened"
+                            min="minDate"
+                            max="'2015-06-22'"
+                            datepicker-options="dateOptions" 
+                            date-disabled="disabled(date, mode)"
+                            ng-required="true" 
+                            close-text="Close">
+                        <span class="input-group-addon" ng-click="open($event)"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    End Date:
                     <div class="input-group ui-datepicker">
                         <input type="text" 
                             class="form-control"
