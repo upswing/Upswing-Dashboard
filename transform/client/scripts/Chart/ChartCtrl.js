@@ -388,58 +388,66 @@
         }
       };
     }
-  ]).controller('flotChartCtrl', [
-    '$scope', function($scope) {
+  ]).controller('flotChartCtrl', function($scope, $rootScope, $http) {
       var areaChart, barChart, lineChart1;
-      lineChart1 = {};
-      lineChart1.data1 = [[1, 15], [2, 20], [3, 14], [4, 10], [5, 10], [6, 20], [7, 28], [8, 26], [9, 22]];
-      $scope.line1 = {};
-      $scope.line1.data = [
+      $scope.line1 = [];
+      $scope.line1.data = [];
+      $http.get('model/data/upswing_sample_data_all_sessions.json').success(function(data) {
+        $scope.line1.data = data;
+      });
+
+      $scope.sessions_all = [];
+      $scope.sessions_all = [
         {
-          data: lineChart1.data1,
-          label: 'Trend'
-        }
+          date: '07/12/2014',
+          name: 'Student 1',
+          subject: 'MAT 161',
+          duration: '30 MIN',
+          status: 'Scheduled',
+          style: 'warning'
+        },
+        {
+          date: '07/12/2014',
+          name: 'Student 2',
+          subject: 'MAT 101',
+          duration: '30 MIN',
+          status: 'Scheduled',
+          style: 'warning'
+        },
+        {
+          date: '06/29/2014',
+          name: 'Student 3',
+          subject: 'ENG 101',
+          duration: '30 MIN',
+          status: 'Completed',
+          style: 'primary'
+        },   
+        {
+          date: '06/28/2014',
+          name: 'Student 4',
+          subject: 'MAT 161',
+          duration: '30 MIN',
+          status: 'Cancelled',
+          style: 'danger'
+        },
+        {
+          date: '06/25/2014',
+          name: 'Student 3',
+          subject: 'ENG 101',
+          duration: '30 MIN',
+          status: 'Completed',
+          style: 'primary'
+        },
+        {
+          date: '06/25/2014',
+          name: 'Student 1',
+          subject: 'MAT 161',
+          duration: '30 MIN',
+          status: 'Completed',
+          style: 'primary'
+        }             
       ];
-      $scope.line1.options = {
-        series: {
-          lines: {
-            show: true,
-            fill: true,
-            fillColor: {
-              colors: [
-                {
-                  opacity: 0
-                }, {
-                  opacity: 0.3
-                }
-              ]
-            }
-          },
-          points: {
-            show: true,
-            lineWidth: 2,
-            fill: true,
-            fillColor: "#ffffff",
-            symbol: "circle",
-            radius: 5
-          }
-        },
-        colors: [$scope.color.primary, $scope.color.infoAlt],
-        tooltip: true,
-        tooltipOpts: {
-          defaultTheme: false
-        },
-        grid: {
-          hoverable: true,
-          clickable: true,
-          tickColor: "#f9f9f9",
-          borderWidth: 1,
-          borderColor: "#eeeeee"
-        },
-        xaxis: {
-          ticks: [[1, 'Jan.'], [2, 'Feb.'], [3, 'Mar.'], [4, 'Apr.'], [5, 'May'], [6, 'June'], [7, 'July'], [8, 'Aug.'], [9, 'Sept.'], [10, 'Oct.'], [11, 'Nov.'], [12, 'Dec.']]
-        }
-      };
+
       areaChart = {};
       areaChart.data1 = [[2007, 15], [2008, 20], [2009, 10], [2010, 5], [2011, 5], [2012, 20], [2013, 28]];
       areaChart.data2 = [[2007, 15], [2008, 16], [2009, 22], [2010, 14], [2011, 12], [2012, 19], [2013, 22]];
@@ -651,7 +659,7 @@
         }
       };
     }
-  ]).controller('sparklineCtrl', [
+  ).controller('sparklineCtrl', [
     '$scope', function($scope) {
       $scope.demoData1 = {
         data: [3, 1, 2, 2, 4, 6, 4, 5, 2, 4, 5, 3, 4, 6, 4, 7],

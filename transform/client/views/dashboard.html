@@ -13,15 +13,15 @@
                         <input type="text" 
                             class="form-control"
                             datepicker-popup="{{format}}"
-                            ng-model="dt"
-                            is-open="opened"
+                            data-ng-model="dt_start"
+                            is-open="opened_start"
                             min="minDate"
                             max="'2015-06-22'"
                             datepicker-options="dateOptions" 
                             date-disabled="disabled(date, mode)"
                             ng-required="true" 
                             close-text="Close">
-                        <span class="input-group-addon" ng-click="open($event)"><i class="fa fa-calendar"></i></span>
+                        <span class="input-group-addon" data-ng-click="open($event,0)"><i class="fa fa-calendar"></i></span>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -30,15 +30,15 @@
                         <input type="text" 
                             class="form-control"
                             datepicker-popup="{{format}}"
-                            ng-model="dt"
-                            is-open="opened"
+                            data-ng-model="dt_end"
+                            is-open="opened_end"
                             min="minDate"
                             max="'2015-06-22'"
                             datepicker-options="dateOptions" 
                             date-disabled="disabled(date, mode)"
                             ng-required="true" 
                             close-text="Close">
-                        <span class="input-group-addon" ng-click="open($event)"><i class="fa fa-calendar"></i></span>
+                        <span class="input-group-addon" ng-click="open($event,1)"><i class="fa fa-calendar"></i></span>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-3">  
-                    <button type="button" class="btn btn-default">Apply</button>
+                    <button type="button" class="btn btn-default" data-ng-click="apply($event)">Apply</button>
                   </div>
                 </div>
             </div>
@@ -127,8 +127,8 @@
             </div>
         </div> 
     </div>
+    <section class="page-form-ele page" data-ng-controller="flotChartCtrl">
 
-    <section class="page-form-ele page">
       <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">All Sessions</h3>
@@ -143,48 +143,13 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-ng-repeat="session in sessions_all | filter: dt_local_start">
                 <tr>
-                    <td>07/04/2014</td>
-                    <td>Student 1</td>
-                    <td>MAT 161</td>
-                    <td>30 Min</td>
-                    <td><span class="label label-warning">Scheduled</span></td>
-                </tr>
-                <tr>
-                    <td>07/03/2014</td>
-                    <td>Student 2</td>
-                    <td>MAT 101</td>
-                    <td>15 Min</td>
-                    <td><span class="label label-warning">Scheduled</span></td>
-                </tr>
-                <tr>
-                    <td>06/29/2014</td>
-                    <td>Student 3</td>
-                    <td>ENG 101</td>
-                    <td>30 Min</td>
-                    <td><span class="label label-primary">Completed</span></td>
-                </tr>
-                <tr>
-                    <td>06/28/2014</td>
-                    <td>Student 4</td>
-                    <td>MAT 161</td>
-                    <td>1 Hr</td>
-                    <td><span class="label label-danger">Cancelled</span></td>
-                </tr>
-                <tr>
-                    <td>06/25/2014</td>
-                    <td>Student 3</td>
-                    <td>ENG 101</td>
-                    <td>45 Min</td>
-                    <td><span class="label label-primary">Completed</span></td>
-                </tr>
-                <tr>
-                    <td>06/25/2014</td>
-                    <td>Student 1</td>
-                    <td>MAT 161</td>
-                    <td>1 Hr 30 Min</td>
-                    <td><span class="label label-primary">Completed</span></td>
+                    <td>{{session.date}}</td>
+                    <td>{{session.name}}</td>
+                    <td>{{session.subject}}</td>
+                    <td>{{session.duration}}</td>
+                    <td><span class="label label-{{session.style}}">{{session.status}}</span></td>
                 </tr>
             </tbody>
         </table>
@@ -218,7 +183,7 @@
         </div> 
     </div>
 
-    <section class="page-form-ele page">
+    <section class="page-form-ele page" data-ng-controller="flotChartCtrl">
       <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Auditable Sessions</h3>
@@ -233,27 +198,13 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-ng-repeat="session in sessions_all | filter: {status:'completed'} ">
                 <tr>
-                    <td>06/29/2014</td>
-                    <td>Student 3</td>
-                    <td>ENG 101</td>
-                    <td>30 Min</td>
-                    <td><span class="label label-primary">Completed</span></td>
-                </tr>
-                <tr>
-                    <td>06/25/2014</td>
-                    <td>Student 3</td>
-                    <td>ENG 101</td>
-                    <td>45 Min</td>
-                    <td><span class="label label-primary">Completed</span></td>
-                </tr>
-                <tr>
-                    <td>06/25/2014</td>
-                    <td>Student 1</td>
-                    <td>MAT 161</td>
-                    <td>1 Hr 30 Min</td>
-                    <td><span class="label label-primary">Completed</span></td>
+                    <td>{{session.date}}</td>
+                    <td>{{session.name}}</td>
+                    <td>{{session.subject}}</td>
+                    <td>{{session.duration}}</td>
+                    <td><span class="label label-{{session.style}}">{{session.status}}</span></td>
                 </tr>
             </tbody>
         </table>

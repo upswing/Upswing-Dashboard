@@ -81,7 +81,15 @@
         return $scope.taskRemainingCount = count;
       });
     }
-  ]).controller('DashboardCtrl', ['$scope', function($scope) {}]);
+  ]).controller('DashboardCtrl', ['$scope', '$rootScope', '$filter', function($scope, $rootScope, $filter) {
+      //$scope.$on("set_date", function(event, new_date) {
+      //  $scope.dt_local_start= new_date;
+      //});    
+    $scope.apply = function($event) {
+      $rootScope.dt_local_start = $filter('date')($rootScope.dt_global_start, $rootScope.dt_format);
+    };
+
+  }]);
 
 }).call(this);
 

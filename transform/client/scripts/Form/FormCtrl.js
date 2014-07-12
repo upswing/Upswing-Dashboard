@@ -5,9 +5,12 @@
       return $scope.tags = ['foo', 'bar'];
     }
   ]).controller('DatepickerDemoCtrl', [
-    '$scope', function($scope) {
+    '$scope', '$rootScope', function($scope, $rootScope) {
       $scope.today = function() {
-        return $scope.dt = new Date();
+        // return $scope.dt = new Date();
+        //$scope.dt_start = new Date();
+        $rootScope.dt_start = new Date();
+        $scope.dt_end = new Date();
       };
       $scope.today();
       $scope.showWeeks = true;
@@ -15,7 +18,8 @@
         return $scope.showWeeks = !$scope.showWeeks;
       };
       $scope.clear = function() {
-        return $scope.dt = null;
+        $rootScope.dt_start = null;
+        $scope.dt_end = null;
       };
       $scope.disabled = function(date, mode) {
         return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
@@ -27,17 +31,26 @@
         };
       };
       $scope.toggleMin();
-      $scope.open = function($event) {
+      $scope.open = function($event, sore) {
         $event.preventDefault();
         $event.stopPropagation();
-        return $scope.opened = true;
+        if(sore == 0) {
+          return $scope.opened_start = true;
+        } else {
+          return $scope.opened_end = true;
+        }
       };
       $scope.dateOptions = {
         'year-format': "'yy'",
         'starting-day': 1
       };
-      $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-      return $scope.format = $scope.formats[0];
+      $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'MM/dd/yyyy', 'shortDate'];
+      $scope.$watch('dt_start', function(new_date) {
+        //$scope.$emit('set_date', new_date);
+        $rootScope.dt_global_start = new_date;
+      });
+      $rootScope.dt_format = $scope.formats[2];
+      return $scope.format = $scope.formats[2];
     }
   ]).controller('TimepickerDemoCtrl', [
     '$scope', function($scope) {
